@@ -1,13 +1,17 @@
+import Constants from './../constant/index';
+
 const initialState = {
-    counter: 0
+    counter: 0,
+    listingData: {}
 };
 
 const ListingReducer = (state = initialState, action) => {
+    const { response = {} } = action;
     switch (action.type) {
-        case 'INCREMENT':
+        case Constants.LIST.GET_LIST:
             return {
                 ...state,
-                counter: state.counter + 1
+                listingData: response.data
             };
         case 'DECREMENT':
             return {
