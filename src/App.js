@@ -1,10 +1,10 @@
 import './App.css';
-import List from './components/listing/Listing'
+import Routes from './routes/Route'
 
 function App() {
   return (
     <div className="App">
-      <List />
+      <Routes />
     </div>
   );
 }

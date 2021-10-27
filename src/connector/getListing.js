@@ -5,7 +5,6 @@ const listingConnector = (content) => {
         api: 'listing',
         content
     };
-    console.log("api", externalApiRequest(options))
     return externalApiRequest(options);
 };
 

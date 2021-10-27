@@ -1,15 +1,13 @@
 import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import getListingData from './../../actions/listingAction';
+import { addtoCart, increaseItem } from './../../actions/cartAction';
 import ListingItem from './ListingItem';
-import Header from "../header/header";
 import FullPageLoader from "../common/loader/FullpageLoader";
 
 const ProductListing = () => {
-    const { listingData = [] } = useSelector((state) => {
-        const { listReducer = {} } = state;
-        return listReducer
-    });
+    const { listReducer = {} } = useSelector((state) => state);
+    const { listingData = [] } = listReducer;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,18 +15,24 @@ const ProductListing = () => {
     }, []);
 
     const addToCartHandler = (payload) => {
-        console.log('payload ===>', payload)
+        dispatch(addtoCart(payload));
+    }
+
+    const increaseItemHandler = (payload) => {
+        dispatch(increaseItem(payload));
     }
 
     return (
         <Fragment>
-            <Header />
             <div className="items_wrap">
-                {listingData.length ? listingData.map(items => {
-                    return <ListingItem
-                        data={items}
-                        addToCartHandler={addToCartHandler}
-                    />
+                {listingData.length ? listingData.map((items, index) => {
+                    return <Fragment key={index}>
+                        <ListingItem
+                            data={items}
+                            addToCartHandler={addToCartHandler}
+                            increaseItemHandler={increaseItemHandler}
+                        />
+                    </Fragment>
                 })
                     :
                     <FullPageLoader />

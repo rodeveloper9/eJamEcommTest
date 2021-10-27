@@ -4,7 +4,7 @@ import './loader.css'
 const SkeltonLoader = ({ width = '', height = '' }) => {
     return (
         <div
-            class="skeleton-box"
+            className="skeleton-box"
             style={{ width: width, height: height }}
         ></div>
     );

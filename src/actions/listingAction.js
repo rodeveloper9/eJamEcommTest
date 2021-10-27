@@ -7,7 +7,6 @@ const then = curry((f, p) => p.then(f)),
     getListingData = (reqQuery) => {
         return async (dispatch) => {
             const response = await pipe(listingConnector, then(setListingData))(reqQuery);
-            console.log("response", response);
             dispatch({
                 type: Constants.LIST.GET_LIST,
                 response
